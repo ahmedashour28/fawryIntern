@@ -7,6 +7,7 @@ import models.Product.NotExpirableNotShippable;
 import models.Product.ShippableNotExpirable;
 
 import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
         /* ExpirableAndShippable it is a product type that can be expired and shipped
@@ -42,6 +43,9 @@ public class Main {
     }
 
     public static void checkout(Customer customer, Cart cart) {
+        if (cart.items.isEmpty()){
+            throw new IllegalArgumentException("the cart is empty");
+        }
         if (cart.calculateTotal() > customer.balance) {
             throw new IllegalArgumentException("balance is insufficient");
         }
